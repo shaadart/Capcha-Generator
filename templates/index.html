@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Captcha Generator</title>
+</head>
+<body>
+    <h1>Simple Captcha Generator</h1>
+    <form method="POST" action="/verify">
+        <p><img src="/captcha" alt="Captcha Image"></p>
+        <p><input type="text" name="captcha_input" placeholder="Enter Captcha" required></p>
+        <p><button type="submit">Verify</button></p>
+    </form>
+</body>
+</html>
