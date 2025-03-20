@@ -11,6 +11,7 @@ app.secret_key = 'your_secret_key'  # Needed for session management
 def generate_captcha_text(length=5):
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
 
+#this is how it works!
 # Generate captcha image
 def generate_captcha_image(text):
     image = ImageCaptcha()
@@ -28,6 +29,13 @@ def captcha():
     captcha_text = session.get('captcha_text', '')
     data = generate_captcha_image(captcha_text)
     return send_file(data, mimetype='image/png')
+
+@app.route('/refresh_captcha')
+def refresh_captcha():
+    captcha_text = generate_captcha_text()
+    session['captcha_text'] = captcha_text
+    return {"success": True}
+
 
 @app.route('/verify', methods=['POST'])
 def verify():
